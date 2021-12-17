@@ -1,0 +1,73 @@
+﻿@model IEnumerable<JAOAssessment.Models.Vehicle>
+
+@{
+    ViewData["Title"] = "ViewIndex";
+}
+
+<h1>ViewIndex</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VehicleKey)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EngineKey)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PaintKey)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InteriorKey)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.QuantityOnHand)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+@*foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VehicleKey)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EngineKey)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PaintKey)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InteriorKey)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QuantityOnHand)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+*@
+    </tbody>
+</table>
