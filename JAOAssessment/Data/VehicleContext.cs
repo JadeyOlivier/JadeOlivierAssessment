@@ -7,6 +7,7 @@ namespace JAOAssessment.Data
     {
         public VehicleContext(DbContextOptions<VehicleContext> options) : base(options) { }
 
-        public DbSet<Vehicle> Vehicles { get; set; }
+        public DbSet<Vehicle> Vehicles { get; set; }  
+        
     }
 }

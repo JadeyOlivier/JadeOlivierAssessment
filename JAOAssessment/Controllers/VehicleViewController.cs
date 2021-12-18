@@ -25,16 +25,16 @@ namespace JAOAssessment.Controllers
             //apiController.Wait();
             //var resultDisplay = apiController.Result;
             //if (resultDisplay.IsSuccessStatusCode)
-            //{               
+            //{
             //    var readTable = resultDisplay.Content.ReadAsAsync<IList<Vehicle>>();
             //    readTable.Wait();
             //    vehicleObj = readTable.Result;
             //    return View(vehicleObj);
-                
+
             //}
             //else
             //{
-            //    vehicleObj = null;            
+            //    vehicleObj = null;
             //    ModelState.AddModelError(string.Empty, "No Records Found");
             //    return Ok(resultDisplay.Content);
             //}
@@ -47,8 +47,7 @@ namespace JAOAssessment.Controllers
             else
             {
                 return Ok("No record found");
-            }
-            
+            }            
         }
 
 
