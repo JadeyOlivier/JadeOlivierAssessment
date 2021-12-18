@@ -24,32 +24,35 @@ namespace JAOAssessment.Controllers
         }
 
 
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> Create(Vehicle vehicle)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        _context.Vehicles.Add(vehicle);
+        //        await _context.SaveChangesAsync();
+
+        //        return RedirectToAction(nameof(GetVehicles));
+        //    }
+
+        //    return Ok(" boo");
+        //}
+
+        [Route("/api/[controller]/InsertVehicle")]
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Vehicle vehicle)
+        public async Task<IActionResult> InsertVehicle(Vehicle _vehicle)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Vehicles.Add(vehicle);
-                await _context.SaveChangesAsync();
-
-                return RedirectToAction(nameof(GetVehicles));
-            }
-
-            return Ok(" boo");
-        }
-
-        [Route("api/[controller]/InsertVehicle")]
-        [HttpPost]
-        public Vehicle InsertVehicle(Vehicle _vehicle)
-        {
+            //bool result = false;
             using (_context)
-            {
+            {              
                 _context.Vehicles.Add(_vehicle);
-                _context.SaveChanges();
+                //_context.SaveChanges();
+                await _context.SaveChangesAsync();
+                //result = true;
+                return Ok(_vehicle);
             }
-
-            return _vehicle;
+            //return (_vehicle);
         }
 
 
