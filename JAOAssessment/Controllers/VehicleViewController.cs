@@ -40,6 +40,10 @@ namespace JAOAssessment.Controllers
             //}
 
             var vehicles = await _context.Vehicles.ToListAsync();
+            _context.Database.ExecuteSqlRaw("Exec [dbo].[PaintProcedure] PopulatePaint");
+            _context.Database.ExecuteSqlRaw("Exec [dbo].[EngineProcedure] PopulatePaint");
+            _context.Database.ExecuteSqlRaw("Exec [dbo].[InteriorProcedure] PopulatePaint");
+            _context.Database.ExecuteSqlRaw("Exec [dbo].[BaseVehicleProcedure] PopulatePaint");
             if (vehicles.Count > 0)
             {
                 return View(vehicles);

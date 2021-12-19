@@ -70,6 +70,9 @@
     <Build Include="dbo\Tables\Interior.sql" />
     <Build Include="dbo\Tables\Paint.sql" />
     <Build Include="dbo\Tables\PaintProcedure.sql" />
+    <Build Include="dbo\EngineProcedure.sql" />
+    <Build Include="dbo\BaseVehicleProcedure.sql" />
+    <Build Include="dbo\InteriorProcedure.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="VehicleStockDatabase.refactorlog" />

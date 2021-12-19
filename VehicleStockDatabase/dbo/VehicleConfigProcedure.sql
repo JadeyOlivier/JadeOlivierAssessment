@@ -8,6 +8,6 @@ BEGIN
 	if @Action = 'SELECT ALL'
 	BEGIN
 		SELECT ID,VehicleKey,EngineKey,PaintKey,InteriorKey,QuantityOnHand,Price 
-		FROM [dbo].Vehicles
+		FROM [dbo].[Vehicles]
 	END
 END
