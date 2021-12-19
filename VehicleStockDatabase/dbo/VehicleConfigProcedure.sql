@@ -1,6 +1,12 @@
 ﻿CREATE PROCEDURE [dbo].[VehicleConfigProcedure]
 	@Action VARCHAR(20),
-	@VehicleID int = NULL
+	@VehicleID int = NULL,
+	@BaseVehicle int = NULL,
+	@Engine int = NULL,
+	@Paint int = NULL,
+	@Interior int = NULL,
+	@Qty int = NULL,
+	@Price decimal(10,2) = NULL
 AS
 BEGIN
 	--SELECT ALL QUERY
@@ -17,8 +23,22 @@ BEGIN
 	--INSERT NEW VEHICLECONFIG QUERY
 	if @Action = 'INSERT_NEW_VEH'
 	BEGIN
-	
-		INSERT INTO [dbo].[Paint] (PaintName, Price, Finish) VALUES ('Limestone Grey Metallic',0,'Metallic');
+		DECLARE @VehID int = (SELECT ID FROM [dbo].[Vehicles] WHERE VehicleKey = @BaseVehicle AND EngineKey = @Engine AND PaintKey = @Paint AND InteriorKey = @Interior)
+		if @VehID IS NULL
+			BEGIN
+				INSERT INTO [dbo].[Vehicles] (VehicleKey, EngineKey, PaintKey,InteriorKey,QuantityOnHand,Price) VALUES (@BaseVehicle,@Engine,@Paint,@Interior,@Qty,@Price);	
+			END
+		else 
+			BEGIN
+				UPDATE [dbo].[Vehicles] SET QuantityOnHand = (QuantityOnHand + @Qty) WHERE ID = @VehID
+			END
+		
+	END
+
+	--DELETE VEHICLE QUERY
+	if @Action = 'DELETE_VEHICLE'
+	BEGIN
+		DELETE FROM [dbo].[Vehicles] WHERE ID = @VehicleID
 	END
 
 	--GET ALL BASE VEHICLE MODELS QUERY
