@@ -55,7 +55,7 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="ViewIndex">Back to List</a>
 </div>
 
 
@@ -112,7 +112,7 @@
 
             $.ajax({
                 type: "POST",
-                url: "/api/Vehicle/InsertVehicle",
+                url: "/VehicleView/InsertNewVehicle",
                 data: JSON.stringify(_vehicle),
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
