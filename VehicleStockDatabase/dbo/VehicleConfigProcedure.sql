@@ -1,5 +1,5 @@
 ﻿CREATE PROCEDURE [dbo].[VehicleConfigProcedure]
-	@Action VARCHAR(10),
+	@Action VARCHAR(20),
 	@VehicleID int = NULL
 
 AS

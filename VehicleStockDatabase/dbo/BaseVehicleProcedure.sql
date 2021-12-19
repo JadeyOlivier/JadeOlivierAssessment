@@ -1,5 +1,5 @@
 ﻿CREATE PROCEDURE [dbo].[BaseVehicleProcedure]
-	@Action VARCHAR(10)
+	@Action VARCHAR(20)
 AS
 BEGIN
 if @Action = 'PopulateBaseVehicle'

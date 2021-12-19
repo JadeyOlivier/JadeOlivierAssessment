@@ -1,5 +1,5 @@
 ﻿CREATE PROCEDURE [dbo].[InteriorProcedure]
-	@Action VARCHAR(10)
+	@Action VARCHAR(20)
 AS
 BEGIN
 if @Action = 'PopulateInterior'

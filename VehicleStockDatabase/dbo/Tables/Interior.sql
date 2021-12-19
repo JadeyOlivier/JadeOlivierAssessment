@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [dbo].[Interior]
 (
-	[Id] INT NOT NULL PRIMARY KEY, 
+	[Id] INT NOT NULL IDENTITY(1,1) PRIMARY KEY, 
     [Name] NVARCHAR(25) NOT NULL, 
     [Seats] NVARCHAR(25) NOT NULL, 
     [Dash] NVARCHAR(25) NOT NULL, 

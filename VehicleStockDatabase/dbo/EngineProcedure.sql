@@ -1,5 +1,5 @@
 ﻿CREATE PROCEDURE [dbo].[EngineProcedure]
-	@Action VARCHAR(10)
+	@Action VARCHAR(20)
 AS
 BEGIN
 if @Action = 'PopulateEngine'
