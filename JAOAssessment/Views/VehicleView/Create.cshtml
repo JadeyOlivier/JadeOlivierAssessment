@@ -1,7 +1,7 @@
 ﻿@model JAOAssessment.Models.Vehicle
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Create New Vehicle Configuration";
 }
 
 <h1>Create</h1>
@@ -128,13 +128,16 @@
             var prc = $("#Price");
 
             var _vehicle = {};
-            _vehicle.ID = vid.val();
-            _vehicle.VehicleKey = vehkey.val();
-            _vehicle.EngineKey = engkey.val();
-            _vehicle.PaintKey = pkey.val();
-            _vehicle.InteriorKey = ikey.val();
-            _vehicle.QuantityOnHand = qoh.val();
+            //_vehicle.ID = vid.val();
+            _vehicle.Model = $("select[id='Model'] option:selected").val();
+            console.log(_vehicle.Model);
+            _vehicle.Engine = $("select[id='Engine'] option:selected").val();
+            _vehicle.Paint = $("select[id='Paint'] option:selected").val();
+            _vehicle.Interior = $("select[id='Interior'] option:selected").val();
+            _vehicle.Quantity = qoh.val();
             _vehicle.Price = prc.val();
+
+            console.log(_vehicle);
 
             $.ajax({
                 type: "POST",

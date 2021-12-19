@@ -5,7 +5,7 @@
     [PaintKey]       INT NOT NULL,
     [InteriorKey]    INT NOT NULL,
     [QuantityOnHand] INT            NOT NULL,
-    [Price]          REAL           NOT NULL,
+    [Price]          DECIMAL(10, 2)           NOT NULL,
     
     CONSTRAINT [FK_PaintKey] FOREIGN KEY (PaintKey) REFERENCES [dbo].[Paint] (Id), 
     CONSTRAINT [FK_VehicleKey] FOREIGN KEY (VehicleKey) REFERENCES [dbo].[BaseVehicle] (Id),

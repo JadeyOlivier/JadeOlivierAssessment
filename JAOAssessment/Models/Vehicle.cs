@@ -8,6 +8,6 @@
         public string Paint { get; set; }
         public string Interior { get; set; }
         public int Quantity { get; set; }
-        public float Price { get; set; }
+        public decimal Price { get; set; }
     }
 }

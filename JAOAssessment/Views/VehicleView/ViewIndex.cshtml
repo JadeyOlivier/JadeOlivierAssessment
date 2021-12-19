@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<JAOAssessment.Models.Vehicle>
 
 @{
-    ViewData["Title"] = "ViewIndex";
+    ViewData["Title"] = "Vehicle Stock";
 }
 
 <h1>ViewIndex</h1>
@@ -62,9 +62,21 @@
                 @Html.DisplayFor(modelItem => item.Price)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                @*Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |*@
+                
+                @*script type="text/javascript">
+                    function ConfirmationDialog() {
+                    if(confirm("Are you sure to continue?"))
+                    return true;
+                    else
+                    return false;
+                    }
+                </script>
+ 
+                @Html.ActionLink("Click to Confirm", "Confirmation", null, new { onclick = "return ConfirmationDialog()" })*@
+
+                @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.ID })
             </td>
         </tr>
 }
