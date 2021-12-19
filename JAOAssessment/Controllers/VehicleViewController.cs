@@ -25,21 +25,25 @@ namespace JAOAssessment.Controllers
             //apiController.Wait();
             //var resultDisplay = apiController.Result;
             //if (resultDisplay.IsSuccessStatusCode)
-            //{               
+            //{
             //    var readTable = resultDisplay.Content.ReadAsAsync<IList<Vehicle>>();
             //    readTable.Wait();
             //    vehicleObj = readTable.Result;
             //    return View(vehicleObj);
-                
+
             //}
             //else
             //{
-            //    vehicleObj = null;            
+            //    vehicleObj = null;
             //    ModelState.AddModelError(string.Empty, "No Records Found");
             //    return Ok(resultDisplay.Content);
             //}
 
             var vehicles = await _context.Vehicles.ToListAsync();
+            _context.Database.ExecuteSqlRaw("Exec [dbo].[PaintProcedure] PopulatePaint");
+            _context.Database.ExecuteSqlRaw("Exec [dbo].[EngineProcedure] PopulateEngine");
+            _context.Database.ExecuteSqlRaw("Exec [dbo].[InteriorProcedure] PopulateInterior");
+            _context.Database.ExecuteSqlRaw("Exec [dbo].[BaseVehicleProcedure] PopulateBaseVehicle");
             if (vehicles.Count > 0)
             {
                 return View(vehicles);
@@ -47,8 +51,7 @@ namespace JAOAssessment.Controllers
             else
             {
                 return Ok("No record found");
-            }
-            
+            }            
         }
 
 
