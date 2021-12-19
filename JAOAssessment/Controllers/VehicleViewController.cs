@@ -39,19 +39,24 @@ namespace JAOAssessment.Controllers
             //    return Ok(resultDisplay.Content);
             //}
 
-            var vehicles = await _context.Vehicles.ToListAsync();
+            //var vehicles = await _context.Vehicles.ToListAsync();
+            //var vehiclesResult = await _context.Database.ExecuteSqlRaw("Exec [dbo].[VehicleConfigProcedure] SELECT ALL").ToL;
+            var vehiclesResult = await _context.Vehicles.FromSqlRaw<Vehicle>("Exec [dbo].[VehicleConfigProcedure] SELECT_ALL").ToListAsync();
             _context.Database.ExecuteSqlRaw("Exec [dbo].[PaintProcedure] PopulatePaint");
             _context.Database.ExecuteSqlRaw("Exec [dbo].[EngineProcedure] PopulateEngine");
             _context.Database.ExecuteSqlRaw("Exec [dbo].[InteriorProcedure] PopulateInterior");
             _context.Database.ExecuteSqlRaw("Exec [dbo].[BaseVehicleProcedure] PopulateBaseVehicle");
-            if (vehicles.Count > 0)
-            {
-                return View(vehicles);
-            }
-            else
-            {
-                return Ok("No record found");
-            }            
+
+            return View(vehiclesResult);
+
+            ////if (vehicles.Count > 0)
+            ////{
+            ////    return View(vehiclesResult);
+            ////}
+            ////else
+            ////{
+            ////    return Ok("No record found");
+            ////}            
         }
 
 
@@ -74,24 +79,26 @@ namespace JAOAssessment.Controllers
             return View(vehicle);
         }
 
-        //[Route("/[controller]/InsertNewVehicle")]
-        //public async Task<IActionResult> InsertNewVehicle(Vehicle _vehicle)
-        //{
-        //    HttpClient hc = new HttpClient();
-        //    hc.BaseAddress = new System.Uri("https://localhost:44336/");
-        //    var apiController = hc.GetAsync("Vehicle/InsertVehicle");
-        //    apiController.Wait();
-        //    var resultDisplay = apiController.Result;
-        //    if (resultDisplay.IsSuccessStatusCode)
-        //    {
-        //        return Ok(resultDisplay.Content);
-        //        //return RedirectToAction(nameof(ViewIndex));
-        //    }
-        //    else
-        //    {
-        //        return Ok(resultDisplay);
-        //    }           
-        //}
+        public async Task<IActionResult> GetBaseVehicles()
+        {
+            var baseVehicleResult = await _context.BaseVehicles.FromSqlRaw("Exec [dbo].[VehicleConfigProcedure] GET_BASE_VEHICLES").ToListAsync();
+            return Ok(baseVehicleResult);
+        }
+        public async Task<IActionResult> GetEngines()
+        {
+            var engineResult = await _context.Engines.FromSqlRaw("Exec [dbo].[VehicleConfigProcedure] GET_ENGINES").ToListAsync();
+            return Ok(engineResult);
+        }
+        public async Task<IActionResult> GetPaints()
+        {
+            var paintResult = await _context.Paints.FromSqlRaw("Exec [dbo].[VehicleConfigProcedure] GET_PAINTS").ToListAsync();
+            return Ok(paintResult);
+        }
+        public async Task<IActionResult> GetInteriors()
+        {
+            var interiorResult = await _context.Interiors.FromSqlRaw("Exec [dbo].[VehicleConfigProcedure] GET_INTERIORS").ToListAsync();
+            return Ok(interiorResult);
+        }
 
     }
 }

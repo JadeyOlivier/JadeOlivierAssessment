@@ -9,46 +9,65 @@
 <h4>Vehicle</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-12">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="ID" class="control-label"></label>
-                <input asp-for="ID" class="form-control" />
-                <span asp-validation-for="ID" class="text-danger"></span>
+            <div class = "row">
+                <div class = "col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Model" class="control-label"></label>
+                        <select asp-for="Model" class="form-control"></select>
+                        <span asp-validation-for="Model" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class = "col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Engine" class="control-label"></label>
+                        <select asp-for="Engine" class="form-control"></select>
+                        <span asp-validation-for="Engine" class="text-danger"></span>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="VehicleKey" class="control-label"></label>
-                <input asp-for="VehicleKey" class="form-control" />
-                <span asp-validation-for="VehicleKey" class="text-danger"></span>
+            <div class = "row">
+                <div class = "col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Paint" class="control-label"></label>
+                        <select asp-for="Paint" class="form-control"></select>
+                        <span asp-validation-for="Paint" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class = "col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Interior" class="control-label"></label>
+                        <select asp-for="Interior" class="form-control"></select>
+                        <span asp-validation-for="Interior" class="text-danger"></span>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="EngineKey" class="control-label"></label>
-                <input asp-for="EngineKey" class="form-control" />
-                <span asp-validation-for="EngineKey" class="text-danger"></span>
+            <div class = "row">
+                <div class = "col-md-3">
+                    <div class="form-group">
+                        <label asp-for="Quantity" class="control-label"></label>
+                        <input asp-for="Quantity" class="form-control" />
+                        <span asp-validation-for="Quantity" class="text-danger"></span>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="PaintKey" class="control-label"></label>
-                <input asp-for="PaintKey" class="form-control" />
-                <span asp-validation-for="PaintKey" class="text-danger"></span>
+            <div class = "row">
+                <div class = "col-md-3">
+                    <div class="form-group">
+                        <label asp-for="Price" class="control-label"></label>
+                        <input asp-for="Price" class="form-control" />
+                        <span asp-validation-for="Price" class="text-danger"></span>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="InteriorKey" class="control-label"></label>
-                <input asp-for="InteriorKey" class="form-control" />
-                <span asp-validation-for="InteriorKey" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="QuantityOnHand" class="control-label"></label>
-                <input asp-for="QuantityOnHand" class="form-control" />
-                <span asp-validation-for="QuantityOnHand" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Price" class="control-label"></label>
-                <input asp-for="Price" class="form-control" />
-                <span asp-validation-for="Price" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input id="insveh" type="submit" value="Create" class="btn btn-primary" />
+            <div class = "row">
+                <div class = "col-md-12">
+                    <div class="form-group">
+                        <input id="insveh" type="submit" value="Create" class="btn btn-primary" />
+                    </div>
+                </div>
             </div>
         </form>
     </div>
@@ -62,6 +81,13 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
        <script type="text/javascript">
+           $(document).ready(function () {
+               GetVehicleItems();
+               GetEngineItems();
+               GetPaintItems();
+               GetInteriorItems();
+           });
+
 /*        $(function () {
             //Remove the dummy row if data present.
             if ($("#tblCustomers tr").length > 2) {
@@ -94,11 +120,11 @@
         //Add event handler.
         $("body").on("click", "#insveh", function () {
             var vid =  $("#ID");
-            var vehkey = $("#VehicleKey");
-            var engkey = $("#EngineKey");
-            var pkey = $("#PaintKey");
-            var ikey = $("#InteriorKey");
-            var qoh = $("#QuantityOnHand");
+            var vehkey = $("#Model");
+            var engkey = $("#Engine");
+            var pkey = $("#Paint");
+            var ikey = $("#Interior");
+            var qoh = $("#Quantity");
             var prc = $("#Price");
 
             var _vehicle = {};
@@ -128,6 +154,59 @@
                 }
             });
         });
+
+        function GetVehicleItems() 
+        {
+            var items;
+            $.getJSON("/VehicleView/GetBaseVehicles", function (data) {
+                console.log(data);
+                $.each(data, function (key, val) 
+                {
+                    items += "<option value='" + val.id+ "'>" + val.model+ "</option>";    
+                });
+                $('#Model').append(items);
+            });
+        };
+
+        function GetEngineItems() 
+        {
+            var items;
+            $.getJSON("/VehicleView/GetEngines", function (data) {
+                console.log(data);
+                $.each(data, function (key, val) 
+                {
+                    items += "<option value='" + val.id+ "'>" + val.engineSpec+ "</option>";    
+                });
+                $('#Engine').append(items);
+            });
+        };
+
+        function GetPaintItems() 
+        {
+            var items;
+            $.getJSON("/VehicleView/GetPaints", function (data) {
+                console.log(data);
+                $.each(data, function (key, val) 
+                {
+                    items += "<option value='" + val.id+ "'>" + val.paintName+ "</option>";    
+                });
+                $('#Paint').append(items);
+            });
+        };
+
+        function GetInteriorItems() 
+        {
+            var items;
+            $.getJSON("/VehicleView/GetInteriors", function (data) {
+                console.log(data);
+                $.each(data, function (key, val) 
+                {
+                    items += "<option value='" + val.id+ "'>" + val.interiorName+ "</option>";    
+                });
+                $('#Interior').append(items);
+            });
+        };
+
  /*
         //Edit event handler.
         $("body").on("click", "#tblCustomers .Edit", function () {
@@ -215,6 +294,9 @@
                 });
             }
         }); */
+
+
+
     </script>
 
 }
