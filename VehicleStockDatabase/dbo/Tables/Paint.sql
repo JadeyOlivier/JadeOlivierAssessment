@@ -1,7 +1,7 @@
 ﻿CREATE TABLE [dbo].[Paint]
 (
 	[Id] INT NOT NULL IDENTITY(1,1) PRIMARY KEY, 
-    [Name] NVARCHAR(25) NOT NULL, 
+    [PaintName] NVARCHAR(25) NOT NULL, 
     [Price] DECIMAL(10, 2) NOT NULL, 
     [Finish] NVARCHAR(20) NOT NULL
 )

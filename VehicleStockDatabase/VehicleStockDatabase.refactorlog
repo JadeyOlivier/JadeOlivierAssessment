@@ -7,4 +7,18 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="Fuel" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="bfdc1980-d740-411a-ad9e-9e06d51900fa" ChangeDateTime="12/19/2021 16:42:38">
+    <Property Name="ElementName" Value="[dbo].[Interior].[Name]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Interior]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="InteriorName" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="70e3ad98-dad5-4f2e-89ba-c4315b922950" ChangeDateTime="12/19/2021 16:42:47">
+    <Property Name="ElementName" Value="[dbo].[Paint].[Name]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Paint]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="PaintName" />
+  </Operation>
 </Operations>
