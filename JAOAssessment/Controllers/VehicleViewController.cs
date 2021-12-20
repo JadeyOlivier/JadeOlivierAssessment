@@ -64,16 +64,24 @@ namespace JAOAssessment.Controllers
             return RedirectToAction(nameof(ViewIndex));
 
         }
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(Vehicle _vehicle)
         {
-            if (id == null || id <= 0)
-            {
-                return BadRequest();
-            }
+            //if (id == null || id <= 0)
+            //{
+            //    return BadRequest();
+            //}
 
-            return View("ViewDetails");
+            return View();
             //return RedirectToAction(nameof(ViewIndex));
 
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetBaseVehicleDetails(string id)
+        {
+            var baseVehicleDetails = await _context.BaseVehicles.FromSqlRaw("Exec [dbo].[VehicleConfigProcedure] {0},{1},{2},{3},{4},{5},{6},{7}", "GET_BASE_VEHICLE_DETAILS",
+                null, id, null, null, null, null, null).ToListAsync();
+            return Ok(baseVehicleDetails);
         }
 
         public async Task<IActionResult> GetBaseVehicles()

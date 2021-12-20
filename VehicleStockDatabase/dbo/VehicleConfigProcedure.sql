@@ -46,6 +46,11 @@ BEGIN
 	BEGIN
 		SELECT Id, Model FROM [dbo].[BaseVehicle] ORDER BY Model 
 	END
+	
+	if @Action = 'GET_BASE_VEHICLE_DETAILS'
+	BEGIN
+		SELECT Model, Year, Price FROM [dbo].[BaseVehicle] WHERE Id = @BaseVehicle ORDER BY Model
+	END
 
 		--GET ALL ENGINES  QUERY
 	if @Action = 'GET_ENGINES'
