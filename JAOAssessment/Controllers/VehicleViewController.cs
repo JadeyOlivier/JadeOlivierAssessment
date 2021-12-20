@@ -64,6 +64,17 @@ namespace JAOAssessment.Controllers
             return RedirectToAction(nameof(ViewIndex));
 
         }
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null || id <= 0)
+            {
+                return BadRequest();
+            }
+
+            return View("ViewDetails");
+            //return RedirectToAction(nameof(ViewIndex));
+
+        }
 
         public async Task<IActionResult> GetBaseVehicles()
         {

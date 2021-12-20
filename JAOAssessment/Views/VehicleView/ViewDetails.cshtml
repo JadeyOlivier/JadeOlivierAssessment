@@ -1,0 +1,78 @@
+﻿
+@{
+    ViewData["Title"] = "ViewDetails";
+}
+<script>  
+    $(function () {  
+        $("#accordion").accordion();  
+    });  
+    </script>
+<h1>ViewDetails</h1>
+
+<div id="accordion">
+    <h3><a href="#">Book Description</a></h3>
+    <div>BLEHHHH</div>
+</div>
+
+
+@*<div class = "accordion">
+    <div class = "contentBx">
+        <div class = "label">Model@*Html.DisplayNameFor(model => model.Model)</div>
+        <div class = "content">
+            <p>This is the model</p>
+        </div>
+    </div>
+
+</div>*@
+@*<div class="accordion" id="vehicleAccordion">
+      @*start of one
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="ModelHead">
+      <button
+        class="accordion-button"
+        type="button"
+        data-mdb-toggle="collapse"
+        data-mdb-target="#collapseModel"
+        aria-expanded="true"
+        aria-controls="collapseModel"
+      >
+        @*Html.DisplayNameFor(model => model.Model)
+        Bleh
+      </button>
+    </h2>
+    <div
+      id="collapseModel"
+      class="accordion-collapse collapse show"
+      aria-labelledby="ModelHead"
+      data-mdb-parent="#vehicleAccordion"
+    >
+      <div class="accordion-body">
+        <strong>This is the first item's accordion body.</strong> It is hidden by default,
+        until the collapse plugin adds the appropriate classes that we use to style each
+        element. These classes control the overall appearance, as well as the showing and
+        hiding via CSS transitions. You can modify any of this with custom CSS or
+        overriding our default variables. It's also worth noting that just about any HTML
+        can go within the <strong>.accordion-body</strong>, though the transition does
+        limit overflow.
+      </div>
+    </div>
+  </div>
+  end of one
+</div>*@
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    
+
+   @*<script>
+        var acc = document.getElementsByClassName("contentBx");
+
+        for (i = 0; i < acc.length; i++) {
+          acc[i].addEventListener("click", function() {
+            this.classList.toggle("active");           
+          });
+        }
+    </script>*@
+}
+
