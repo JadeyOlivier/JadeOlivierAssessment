@@ -2,7 +2,30 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="text-center" style= "margin-top:100px">
+    <h1 class="display-4" style="color:#1F2F57">Welcome to the VW Roodepoort Branch!</h1>
+    <p>To view the current stock, click the button below</p>
 </div>
+<div class = "row">
+    <div class = "col-md-12">
+        <div class="form-group" style = "text-align:center">
+            <input id="vehView" value="View Stock" class="btn btn-primary" />
+        </div>
+    <div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        $("body").on("click", "#vehView", function () {
+            $.ajax({
+                url: "/VehicleView/ViewIndex",
+                //data: JSON.stringify(_vehicle),
+                }
+            });
+        });
+
+    </script>
+
+
+}
