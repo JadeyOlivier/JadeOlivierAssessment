@@ -73,6 +73,7 @@
     <Build Include="dbo\EngineProcedure.sql" />
     <Build Include="dbo\BaseVehicleProcedure.sql" />
     <Build Include="dbo\InteriorProcedure.sql" />
+    <Build Include="dbo\Tables\FullVehicleDetail.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="VehicleStockDatabase.refactorlog" />

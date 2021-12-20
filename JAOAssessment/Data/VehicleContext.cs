@@ -12,5 +12,7 @@ namespace JAOAssessment.Data
         public DbSet<Engine> Engines { get; set; }
         public DbSet<Interior> Interiors { get; set; }
         public DbSet<BaseVehicle> BaseVehicles { get; set; }
+        public DbSet<FullVehicleDetail> FullVehicleDetails { get; set; } 
+
     }
 }

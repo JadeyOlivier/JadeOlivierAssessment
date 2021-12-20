@@ -19,7 +19,7 @@ namespace JAOAssessment.Controllers
       
         public async Task<IActionResult> ViewIndex()
         {          
-            var vehiclesResult = await _context.Vehicles.FromSqlRaw<Vehicle>("Exec [dbo].[VehicleConfigProcedure] SELECT_ALL").ToListAsync();
+            var vehiclesResult = await _context.Vehicles.FromSqlRaw("Exec [dbo].[VehicleConfigProcedure] SELECT_ALL").ToListAsync();
             _context.Database.ExecuteSqlRaw("Exec [dbo].[PaintProcedure] PopulatePaint");
             _context.Database.ExecuteSqlRaw("Exec [dbo].[EngineProcedure] PopulateEngine");
             _context.Database.ExecuteSqlRaw("Exec [dbo].[InteriorProcedure] PopulateInterior");
@@ -49,8 +49,10 @@ namespace JAOAssessment.Controllers
                 return RedirectToAction(nameof(ViewIndex));
             }
             return View(_vehicle);
-        }  
-        
+        }
+
+       
+
         public async Task<IActionResult> Delete(int? id)
         {
             if(id == null || id <= 0)
@@ -64,16 +66,17 @@ namespace JAOAssessment.Controllers
             return RedirectToAction(nameof(ViewIndex));
 
         }
-        public async Task<IActionResult> Details(Vehicle _vehicle)
+
+        //public IActionResult Details()
+        //{
+        //    return View();
+        //}
+
+        public async Task<IActionResult> Details(int? id)
         {
-            //if (id == null || id <= 0)
-            //{
-            //    return BadRequest();
-            //}
-
-            return View();
+            var fullVehResult = await _context.FullVehicleDetails.FromSqlRaw("Exec [dbo].[VehicleConfigProcedure] {0},{1},{2},{3},{4},{5},{6},{7}", "GET_FULL_VEHICLE_DETAILS",id, null, null, null, null, null, null).ToListAsync();
+            return View(fullVehResult);
             //return RedirectToAction(nameof(ViewIndex));
-
         }
 
         [HttpGet]

@@ -18,11 +18,11 @@
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
     <script>
         $("body").on("click", "#vehView", function () {
-            $.ajax({
-                url: "/VehicleView/ViewIndex",
-                //data: JSON.stringify(_vehicle),
-                }
-            });
+            //$.ajax({
+            //    url: "/VehicleView/ViewIndex",
+            //    }
+            //});
+            window.location = "/VehicleView/ViewIndex";
         });
 
     </script>
