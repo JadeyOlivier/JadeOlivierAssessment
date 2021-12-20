@@ -47,9 +47,17 @@ BEGIN
 		SELECT Id, Model FROM [dbo].[BaseVehicle] ORDER BY Model 
 	END
 	
-	if @Action = 'GET_BASE_VEHICLE_DETAILS'
+	if @Action = 'GET_FULL_VEHICLE_DETAILS'
 	BEGIN
-		SELECT Model, Year, Price FROM [dbo].[BaseVehicle] WHERE Id = @BaseVehicle ORDER BY Model
+		SELECT  b.Model ,b.Year AS "BaseYear", b.Price AS "BasePrice",c.Fuel AS "EngineFuel", c.Capacity AS "EngineCapacity",c.Power AS "EnginePower",
+		c.Price AS "EnginePrice", d.InteriorName, d.Seats, d.Dash, d.Carpet,d.Headliner,d.Price AS "InteriorPrice", e.PaintName, e.Finish AS "PaintFinish",
+		e.Price AS "PaintPrice" 
+		FROM [dbo].[Vehicles] AS a 
+		JOIN [dbo].[BaseVehicle] AS b ON b.Id = a.VehicleKey
+		JOIN [dbo].[Engine] AS c ON c.Id = a.EngineKey
+		JOIN [dbo].[Interior] AS d ON d.Id = a.InteriorKey
+		JOIN [dbo].[Paint] AS e ON e.Id = a.PaintKey
+		WHERE a.ID = @VehicleID
 	END
 
 		--GET ALL ENGINES  QUERY

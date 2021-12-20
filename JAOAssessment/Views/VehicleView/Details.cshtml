@@ -1,96 +1,85 @@
-﻿@model IEnumerable<JAOAssessment.Models.Vehicle>
+﻿@model IEnumerable<JAOAssessment.Models.FullVehicleDetail>
 
 @{
     ViewData["Title"] = "Details";
 }
 
 <h1>Details</h1>
+<style>
+.accordion {
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+  transition: 0.4s;
+}
+
+.active, .accordion:hover {
+  background-color: #ccc;
+}
+
+.panel {
+  padding: 0 18px;
+  background-color: white;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+}
+</style>
 
 <div>
     <h4>Vehicle</h4>
     <hr />
-  <div class="accordion" id="vehicleAccordion">
-      @*start of one*@
-  <div class="accordion-item">
-    <h2 class="accordion-header" id="ModelHead">
-      <h3
-        class="accordion-button"
-        type="button"
-        data-mdb-toggle="collapse"
-        data-mdb-target="#collapseModel"
-        aria-expanded="true"
-        aria-controls="collapseModel"
-      >
-        @*Html.DisplayNameFor(model => model.Model)*@
-        Bleh
-      </h3>
-    </h2>
-    <div
-      id="collapseModel"
-      class="accordion-collapse collapse show"
-      aria-labelledby="ModelHead"
-      data-mdb-parent="#vehicleAccordion"
-    >
-      <div class="accordion-body" id= "ModelInfo">
-        <strong>This is the first item's accordion body.</strong> It is hidden by default,
-        until the collapse plugin adds the appropriate classes that we use to style each
-        element. These classes control the overall appearance, as well as the showing and
-        hiding via CSS transitions. You can modify any of this with custom CSS or
-        overriding our default variables. It's also worth noting that just about any HTML
-        can go within the <strong>.accordion-body</strong>, though the transition does
-        limit overflow.
-      </div>
-    </div>
-  </div>
-  @*end of one*@
 </div>
-</div>
+        @foreach (var item in Model) {
+          <button class="accordion">Base Model</button>
+            <div class="panel">
+                <p> Car Model : </p><p>@Html.DisplayFor(modelItem => item.Model)</p><br>
+                <p> Year : </p><p>@Html.DisplayFor(modelItem => item.BaseYear)</p><br>
+                <p> Price : </p><p>@Html.DisplayFor(modelItem => item.BasePrice)</p><br>
+            </div>
+          <button class="accordion">Engine</button>
+            <div class="panel">
+                <p> Fuel Type : </p><p>@Html.DisplayFor(modelItem => item.EngineFuel)</p><br>
+                <p> Capacity : </p><p>@Html.DisplayFor(modelItem => item.EngineCapacity)</p><br>
+                <p> Power : </p><p>@Html.DisplayFor(modelItem => item.EnginePower)</p><br>
+                <p> Price : </p><p>@Html.DisplayFor(modelItem => item.EnginePrice)</p><br>
+            </div>
+          <button class="accordion">Interior</button>
+            <div class="panel">
+                <p> Name : </p><p>@Html.DisplayFor(modelItem => item.InteriorName)</p><br>
+                <p> Seats : </p><p>@Html.DisplayFor(modelItem => item.Seats)</p><br>
+                <p> Dash : </p><p>@Html.DisplayFor(modelItem => item.Dash)</p><br>
+                <p> Carpet : </p><p>@Html.DisplayFor(modelItem => item.Carpet)</p><br>
+                <p> Headliner : </p><p>@Html.DisplayFor(modelItem => item.Headliner)</p><br>
+                <p> Price : </p><p>@Html.DisplayFor(modelItem => item.InteriorPrice)</p><br>
+            </div>
+          <button class="accordion">Paint</button>
+            <div class="panel">
+                <p> Name : </p><p>@Html.DisplayFor(modelItem => item.PaintName)</p><br>
+                <p> Finish : </p><p>@Html.DisplayFor(modelItem => item.PaintFinish)</p><br>
+                <p> Price : </p><p>@Html.DisplayFor(modelItem => item.PaintPrice)</p><br>
+            </div>
+
+        }       
+
 <div>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
     <a asp-action="ViewIndex">Back to List</a>
 </div>
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
     <script>
     $(document).ready(function () {
-        
-        @foreach (var item in Model) {
-            string modelID = item.Model;
-            string engineID = item.Engine;
-            string paintID = item.Paint;
-            string interiorID = item.Interior;
-        }
+        var output;
+        console.log(output);
 
-       
-        $.ajax({
-            type: "GET",
-            url: "/VehicleView/GetBaseVehicleDetails",
-            data: {id: modelID},
-            dataType: "text",
-            success: function (data) {
-               console.log(data);
-                $.each(data, function (key, val) 
-                {
-                    vehDetails += val + "/n"
-                });
-                $('#ModelHead').text = vehDetails;
-            },
-            error: function () {
-                console.log("Help me...");
-            }
-        });
-        alert("stop");
-              //GetVehicleDetails();              
-           });
-
-  @*  <script type="text/javascript">  
-    $(function () {  
-        $("#accordion").accordion();  
-    });  
-    </script> *@
-
-   @*<script>
         var acc = document.getElementsByClassName("accordion");
         var i;
 
@@ -102,24 +91,9 @@
               panel.style.maxHeight = null;
             } else {
               panel.style.maxHeight = panel.scrollHeight + "px";
-            }
+            } 
           });
         }
-    </script>*@
-
-    function GetVehicleItems() 
-        {
-            string vehDetails;
-            $.getJSON("/VehicleView/GetBaseVehicleDetails", function (data) {
-                console.log(data);
-                $.each(data, function (key, val) 
-                {
-                    vehDetails += val + "/n"
-                });
-                $('#ModelHead').text = vehDetails;
-            });
-        };
-        
     </script>
 
 }
