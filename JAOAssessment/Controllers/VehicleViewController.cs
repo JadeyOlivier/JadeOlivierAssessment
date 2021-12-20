@@ -16,7 +16,7 @@ namespace JAOAssessment.Controllers
         {
             _context = context;
         }
-
+      
         public async Task<IActionResult> ViewIndex()
         {          
             var vehiclesResult = await _context.Vehicles.FromSqlRaw<Vehicle>("Exec [dbo].[VehicleConfigProcedure] SELECT_ALL").ToListAsync();
