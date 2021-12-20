@@ -1,0 +1,125 @@
+﻿@model IEnumerable<JAOAssessment.Models.Vehicle>
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Vehicle</h4>
+    <hr />
+  <div class="accordion" id="vehicleAccordion">
+      @*start of one*@
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="ModelHead">
+      <h3
+        class="accordion-button"
+        type="button"
+        data-mdb-toggle="collapse"
+        data-mdb-target="#collapseModel"
+        aria-expanded="true"
+        aria-controls="collapseModel"
+      >
+        @*Html.DisplayNameFor(model => model.Model)*@
+        Bleh
+      </h3>
+    </h2>
+    <div
+      id="collapseModel"
+      class="accordion-collapse collapse show"
+      aria-labelledby="ModelHead"
+      data-mdb-parent="#vehicleAccordion"
+    >
+      <div class="accordion-body" id= "ModelInfo">
+        <strong>This is the first item's accordion body.</strong> It is hidden by default,
+        until the collapse plugin adds the appropriate classes that we use to style each
+        element. These classes control the overall appearance, as well as the showing and
+        hiding via CSS transitions. You can modify any of this with custom CSS or
+        overriding our default variables. It's also worth noting that just about any HTML
+        can go within the <strong>.accordion-body</strong>, though the transition does
+        limit overflow.
+      </div>
+    </div>
+  </div>
+  @*end of one*@
+</div>
+</div>
+<div>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    <a asp-action="ViewIndex">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+    $(document).ready(function () {
+        
+        @foreach (var item in Model) {
+            string modelID = item.Model;
+            string engineID = item.Engine;
+            string paintID = item.Paint;
+            string interiorID = item.Interior;
+        }
+
+       
+        $.ajax({
+            type: "GET",
+            url: "/VehicleView/GetBaseVehicleDetails",
+            data: {id: modelID},
+            dataType: "text",
+            success: function (data) {
+               console.log(data);
+                $.each(data, function (key, val) 
+                {
+                    vehDetails += val + "/n"
+                });
+                $('#ModelHead').text = vehDetails;
+            },
+            error: function () {
+                console.log("Help me...");
+            }
+        });
+        alert("stop");
+              //GetVehicleDetails();              
+           });
+
+  @*  <script type="text/javascript">  
+    $(function () {  
+        $("#accordion").accordion();  
+    });  
+    </script> *@
+
+   @*<script>
+        var acc = document.getElementsByClassName("accordion");
+        var i;
+
+        for (i = 0; i < acc.length; i++) {
+          acc[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var panel = this.nextElementSibling;
+            if (panel.style.maxHeight) {
+              panel.style.maxHeight = null;
+            } else {
+              panel.style.maxHeight = panel.scrollHeight + "px";
+            }
+          });
+        }
+    </script>*@
+
+    function GetVehicleItems() 
+        {
+            string vehDetails;
+            $.getJSON("/VehicleView/GetBaseVehicleDetails", function (data) {
+                console.log(data);
+                $.each(data, function (key, val) 
+                {
+                    vehDetails += val + "/n"
+                });
+                $('#ModelHead').text = vehDetails;
+            });
+        };
+        
+    </script>
+
+}
